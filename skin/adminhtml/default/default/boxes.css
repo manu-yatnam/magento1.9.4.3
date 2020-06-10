@@ -1641,5 +1641,3 @@ div.actions:after,
 .files-wide .row:after,
 .grid tr.filter .range .range-line:after,
 .store-scope:after { display:block; clear:both; content:"."; font-size:0; line-height:0; height:0; overflow:hidden; }
-.adminhtml-catalog-product-attribute-edit #product_attribute_tabs_labels_content .dynamic-grid input.input-text { width: 250px; }
-.brand-adminhtml-brand-edit #edit_form .entity-edit .input-text { width: 250px; }
