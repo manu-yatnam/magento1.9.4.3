@@ -1,0 +1,37 @@
+.accordion-section .filetype{
+	 background: url("../images/upload.png") no-repeat scroll 0 0;
+}
+.accordion-section .uploadImage{
+	font-size: 144px !important;
+}
+.serach_Box input[type="text"]{
+	height: 16px;
+	margin: 17px;
+	width: 78%;
+}
+.serach_Box{
+	width: 348px;
+}
+.order_box ul li .active{
+	background:url("../images/ord-blue-bg.png") no-repeat scroll;
+}
+.order_box ul li a{
+	background:url("../images/ordeht-bg1.png") no-repeat scroll;
+}
+#sync1 .item img{
+	width: 99%;
+}
+.news_letter_Inner input[type="text"]{
+	height: 51px;
+	padding-top: 17px;
+}
+.order_box ul li{
+width: 29%;
+}
+.catalog-product-view .accordion .selectedradio label{
+background: url("../images/rd2.png") no-repeat scroll 0 0 !important;
+width:18px;
+}
+.catalog-product-view .accordion-section-content input[type="radio"] + label{
+background:url("../images/rd1.png") no-repeat scroll 0 0;
+}

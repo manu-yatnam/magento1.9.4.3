@@ -1,0 +1,6 @@
+.accordion-section .filetype{
+	 background: url("../images/upload.png") no-repeat scroll 0 0;
+}
+.accordion-section .uploadImage{
+	font-size: 144px !important;
+}
