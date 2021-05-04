@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+  <default>
+    <payment>
+        <worldpay_payments_card>
+          <shop_country_code>GB</shop_country_code>
+          <active>0</active>
+          <payment_action>authorize_capture</payment_action>
+          <storeonfile>0</storeonfile>
+          <use3ds>0</use3ds>
+          <title>Worldpay Payments</title>
+          <enable_logging>0</enable_logging>
+          <order_status>processing</order_status>
+          <mode>Test Mode</mode>
+          <settlement_currency>GBP</settlement_currency>
+          <language_code>EN</language_code>
+          <model>Worldpay\Payments\Model\Methods\Card</model>
+        </worldpay_payments_card>
+        <worldpay_payments_paypal>
+          <active>0</active>
+          <title>Worldpay PayPal</title>
+          <enable_logging>0</enable_logging>
+          <model>Worldpay\Payments\Model\Methods\Paypal</model>
+        </worldpay_payments_paypal>
+        <worldpay_payments_giropay>
+          <active>0</active>
+          <title>Worldpay Giropay</title>
+          <enable_logging>0</enable_logging>
+          <model>Worldpay\Payments\Model\Methods\Giropay</model>
+        </worldpay_payments_giropay>
+        <worldpay_payments_ideal>
+          <active>0</active>
+          <title>Worldpay iDeal</title>
+          <enable_logging>0</enable_logging>
+          <model>Worldpay\Payments\Model\Methods\Ideal</model>
+        </worldpay_payments_ideal>
+        <worldpay_payments_alipay>
+          <active>0</active>
+          <title>Worldpay Alipay</title>
+          <enable_logging>0</enable_logging>
+          <model>Worldpay\Payments\Model\Methods\Alipay</model>
+        </worldpay_payments_alipay>
+        <worldpay_payments_mistercash>
+          <active>0</active>
+          <title>Worldpay Mistercash</title>
+          <enable_logging>0</enable_logging>
+          <model>Worldpay\Payments\Model\Methods\Mistercash</model>
+        </worldpay_payments_mistercash>
+        <worldpay_payments_przelewy24>
+          <active>0</active>
+          <title>Worldpay Przelewy24</title>
+          <enable_logging>0</enable_logging>
+          <model>Worldpay\Payments\Model\Methods\Przelewy24</model>
+        </worldpay_payments_przelewy24>
+        <worldpay_payments_paysafecard>
+          <active>0</active>
+          <title>Worldpay PaySafeCard</title>
+          <enable_logging>0</enable_logging>
+          <model>Worldpay\Payments\Model\Methods\Paysafecard</model>
+        </worldpay_payments_paysafecard>
+        <worldpay_payments_postepay>
+          <active>0</active>
+          <title>Worldpay Postepay</title>
+          <enable_logging>0</enable_logging>
+          <model>Worldpay\Payments\Model\Methods\Postepay</model>
+        </worldpay_payments_postepay>
+        <worldpay_payments_qiwi>
+          <active>0</active>
+          <title>Worldpay Qiwi</title>
+          <enable_logging>0</enable_logging>
+          <model>Worldpay\Payments\Model\Methods\Qiwi</model>
+        </worldpay_payments_qiwi>
+        <worldpay_payments_sofort>
+          <active>0</active>
+          <title>Worldpay Sofort</title>
+          <enable_logging>0</enable_logging>
+          <model>Worldpay\Payments\Model\Methods\Sofort</model>
+        </worldpay_payments_sofort>
+        <worldpay_payments_yandex>
+          <active>0</active>
+          <title>Worldpay Yandex</title>
+          <enable_logging>0</enable_logging>
+          <model>Worldpay\Payments\Model\Methods\Yandex</model>
+        </worldpay_payments_yandex>
+    </payment>
+  </default>
+</config>

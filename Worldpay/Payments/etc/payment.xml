@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<payment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Payment:etc/payment.xsd">
+    <methods>
+        <method name="worldpay_payments_card">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
+        <method name="worldpay_payments_paypal">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
+        <method name="worldpay_payments_giropay">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
+        <method name="worldpay_payments_alipay">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
+        <method name="worldpay_payments_ideal">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
+        <method name="worldpay_payments_mistercash">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
+        <method name="worldpay_payments_przelewy24">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
+        <method name="worldpay_payments_paysafecard">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
+        <method name="worldpay_payments_postepay">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
+        <method name="worldpay_payments_qiwi">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
+        <method name="worldpay_payments_sofort">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
+        <method name="worldpay_payments_yandex">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
+    </methods>
+</payment>

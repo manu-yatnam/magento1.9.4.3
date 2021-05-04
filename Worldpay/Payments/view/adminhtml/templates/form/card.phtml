@@ -1,0 +1,60 @@
+<?php
+$clientKey = $block->escapeHtml($block->getClientKey());
+
+
+$saveCardEnabled = $block->saveCardEnabled();
+if ($saveCardEnabled) {
+	$savedCards = $block->getSavedCards();
+} else {
+	$savedCards = [];
+}
+$wpData = [
+    "clientKey" => $clientKey,
+];
+$serializedFormData = $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($wpData);
+?>
+<fieldset class="admin__fieldset payment-method" id="payment_form_<?php echo $block->escapeHtml($block->getMethodCode()) ?>" style="display: none"  data-mage-init='{"worldpayForm":<?php /* @noEscape */ echo $serializedFormData; ?>}'>
+  <div class="admin__field _required">
+     <input type="hidden"
+       name="payment[paymentToken]"
+       id="wp_token"
+       value=""/>
+   		<?php if (count($savedCards) && $saveCardEnabled): ?>
+   			<h3>
+   			Saved cards
+   			</h3>
+   		<?php endif; ?>
+       <?php foreach ($savedCards as $savedCard):?>
+       	<div class="admin__field-option">
+			<input id="saved_card_<?php echo $savedCard['id'];?>" value="<?php echo $savedCard['token']; ?>" type="radio" name="payment[token_to_use]" class="admin__control-radio saved_tokens">
+
+		    <label class="admin__field-label" for="saved_card_<?php echo $savedCard['id'];?>"><?php echo $savedCard['cardType']; ?> <?php echo $savedCard['number']; ?></label>
+		</div>
+       <?php endforeach; ?>
+       <?php if (count($savedCards)): ?>
+       		<p>&nbsp;</p>
+       		<div class="admin__field field" id="wp_cvc_field" style="display:none">
+			    <div class="admin__field-control control" id="wp_cvc_container">
+			    </div>
+			</div>
+      <div class="admin__field-option">
+          <input id="wp_new_card" value="1" type="radio" name="payment[token_to_use]" class="admin__control-radio saved_tokens">
+           <label class="admin__field-label" for="wp_new_card">Use new card</label>
+      </div>
+   		<?php endif; ?>
+      <div id="wp_iframe_container" style="<?php if (count($savedCards) && $saveCardEnabled): ?>display: none<?php endif;?>">
+       <div id="wp_iframe"></div>
+       <?php if ($saveCardEnabled): ?>
+	       <div class="field">
+	            <label class="label">
+	                <span></span>
+	            </label>
+	            <div class="admin__field admin__field-option">
+				    <input name="payment[saveCard]" type="checkbox" id="wp_save_card" value="1" class="admin__control-checkbox" checked="checked">
+				    <label for="wp_save_card" class="admin__field-label">Save this card</label>
+				</div>
+	        </div>
+	     <?php endif; ?>  
+       </div>
+  </div>
+</fieldset>
