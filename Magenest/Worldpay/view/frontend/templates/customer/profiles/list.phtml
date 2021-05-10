@@ -1,0 +1,51 @@
+<?php
+/**@var \Magenest\Worldpay\Block\Customer\Profile $block */
+?>
+<?php $profiles = $block->getCustomerProfiles(); ?>
+
+<table id="customer-booking-order-list" class="data table table-downloadable-products">
+    <?php if (!sizeof($profiles)) {?>
+        <div class="message info empty">
+            <span><?php echo __('You haven\'t have any recurring profile yet.'); ?></span>
+        </div>
+    <?php } else { ?>
+        <thead>
+        <tr>
+            <th><?php echo __('Token'); ?></th>
+            <th><?php echo __('Status'); ?></th>
+            <th><?php echo __('Start Date'); ?></th>
+            <th><?php echo __('Regular Amount'); ?></th>
+            <th><?php echo __('Recurring Period'); ?></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <?php foreach ($profiles as $profile) { $methodCode = $profile->getMethodCode(); $status = $profile->getStatus(); ?>
+                <td><?php echo $profile->getData('token'); ?></td>
+
+                <?php if ($status == \Magenest\Worldpay\Model\Config::STATUS_ACTIVE) { ?>
+                    <td><?php echo __('Active') ?></td>
+                <?php } else if ($status == \Magenest\Worldpay\Model\Config::STATUS_CANCELLED) { ?>
+                    <td><?php echo __('Cancel') ?></td>
+                <?php } else { ?>
+                    <td><?php echo __('Expired') ?></td>
+                <?php } ?>
+                <td><?php echo $profile->getData('start_date'); ?></td>
+                <td><?php echo number_format($profile->getData('amount'), 2); ?></td>
+                <td><?php echo $profile->getData('frequency') . " cycle. "; ?>
+                    <?php echo 'Repeat ' . $profile->getData('total_cycles') . ' time(s).'?>
+                </td>
+                <td data-th="<?php echo $block->escapeHtml(__('Actions')) ?>" class="col actions">
+                    <a href="<?php echo $block->getProfileViewUrl($profile->getId()); ?>" class="action view">
+                        <span><?php echo __('View Profile')?></span>
+                    </a>
+                    <a href="<?php echo $block->getOrderViewUrl($profile->getOrderId()); ?>" class="action view">
+                        <span><?php echo __('Order') ?></span>
+                    </a>
+                </td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    <?php } ?>
+</table>

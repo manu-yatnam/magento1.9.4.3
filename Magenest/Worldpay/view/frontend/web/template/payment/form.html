@@ -1,0 +1,79 @@
+<?php 
+    $_code=$this->getMethodCode();
+    $_months=$this->getMonths(); 
+    $_years=$this->getExpiryYears(); 
+    $_clientKey=$this->getClientKey(); 
+    $_billingName=$this->getBillingName();
+    $_persistence=$this->getPersistence();
+    $_cards=$this->getCardsOnFile();
+    $_threeDSEnabled = $this->getThreeDSEnabled();
+?>
+<ul class="form-list worldpay-container" id="payment_form_worldpay_cc" style="display:none">
+
+    <li class="header-message">
+        <div class="security-message">
+            <div class="padlock">
+                <img alt="Padlock" src="<?php echo $this->getSkinUrl('images/worldpay/padlock.png'); ?>"/>
+            </div>
+            <div class="message">
+                <strong>Secure Card Payment</strong><br/>
+                This is a secure 128bit SSL encrypted payment.
+            </div>
+        </div>
+    </li>
+
+    <?php
+     if (!empty($_cards)): 
+        foreach ($_cards as $card):
+            echo '<li><span class="worldpay-savedcard-input"><input name="payment[savedcard]" type="radio" value="'. $card['token'] .'" id="token-'. $card['id'] .'"> <label for="token-'. $card['id'] .'">'. $card['cardType'] . ' - <span class="saved-card-number">'. $card['number'] .'</span></label></span></li>';
+        endforeach;
+    ?>
+
+    <div style="display:none;" class="worldpay_existing_cvc_box" id="worldpay_existing_cvc_box">
+        <label>
+            CVC<br/>
+            <span class="small">The 3 or 4 numbers on the back of your card</span>
+        </label>
+        <div class="input-box">
+            <input type="text" id="worldpay_existing_cvc" size="10" data-worldpay="cvc" value="" class="card-cvc" />
+        </div>
+    </div>
+
+    <li>
+        <input type="radio" name="payment[savedcard]" id="worldpay-newcard" autocomplete="off">
+        <label for="worldpay-newcard">Use a new card</label>
+    </li>
+    <?php endif; ?>
+
+    <li class="validation-advice" style="display:none;" id="worldpay-payment-errors"></li>
+
+    <?php if (!empty($_cards)): ?>
+    <ul id="new-worldpay-card" style="display:none;">
+    <?php endif; ?>
+    <div class="worldpay_existing_cvc_box">
+    	<li id="worldpay-iframe">
+           
+        </li>
+        
+        <p class="save-card"><label for="worldpay-savecard">Save Card</label> <input id="worldpay-savecard" type="checkbox" name="payment[savecard]" /></p>
+        <p>Your card will be securly saved and can be removed at any time from your account.</p>
+    </div>
+    <?php if (!empty($_cards)): ?>
+
+    </ul>
+    <?php endif; ?>
+</ul>
+
+<script type="text/javascript">
+if (!window.Worldpay) {
+    alert('Worldpay JS not loaded!');
+}
+Worldpay.templateSaveButton = false;
+Worldpay.setClientKey("<?php echo $_clientKey; ?>");
+<?php if ($_persistence): ?>
+Worldpay.reusable = true;
+<?php endif; ?>
+if (window.loadUpWP) {
+    loadUpWP();
+}
+</script>

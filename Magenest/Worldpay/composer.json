@@ -1,0 +1,21 @@
+{
+    "name": "magenest/module-worldpay-and-subscriptions",
+    "description": "Worldpay Payments",
+    "require": {
+        "magenest/core": "*",
+        "worldpay/worldpay-lib-php": "*"
+    },
+    "type": "magento2-module",
+    "version": "2.1.1",
+    "license": [
+        "Proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Magenest\\Worldpay\\": ""
+        }
+    }
+}

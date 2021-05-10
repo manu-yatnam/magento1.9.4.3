@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Magenest_Worldpay::main" title="Worldpay Payment Gateway"
+             module="Magenest_Worldpay" sortOrder="50"
+             dependsOnModule="Magenest_Worldpay" resource="Magenest_Worldpay::main" />
+        <add id="Magenest_Worldpay::profile" title="Subscription Profiles"
+             module="Magenest_Worldpay" sortOrder="20" parent="Magenest_Worldpay::main"
+             action="worldpay/profile/index" resource="Magenest_Worldpay::profile" />
+        <add id="Magenest_Worldpay::settings" title="Settings"
+             module="Magenest_Worldpay" sortOrder="30" parent="Magenest_Worldpay::main"
+             action="adminhtml/system_config/edit/section/payment/worldpay_payments_card"
+             resource="Magenest_Worldpay::settings" />
+    </menu>
+</config>

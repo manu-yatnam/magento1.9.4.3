@@ -1,0 +1,57 @@
+<?php
+
+/** @var \Magenest\Worldpay\Block\Catalog\Product\View $block */
+$isSubscription = $block->getIsSubscriptionProduct();
+$options = $block->getSubscriptionOptions();
+$useCanDefineStartDate = $block->getCanUserDefineStartDate();
+?>
+
+
+<?php if ($isSubscription && $options) { ?>
+    <table>
+        <thead>
+        <tr>
+            <th></th>
+            <th><?php echo __('Billing Cycle'); ?></th>
+            <th><?php echo __('Recurring Payment Stop After'); ?></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <?php foreach($options as $option) {
+            $billingCycle = $option['cycle'] . ' cycles of ' . $option['frequency'] . ' ' . $option['unit'];
+            ?>
+            <tr>
+                <td>
+                    <input type="radio" name="additional_options[Subscription]"
+                           value="<?php echo $billingCycle; ?>" />
+                </td>
+                <td><?php echo $option['frequency'] . ' ' . ucfirst($option['unit'] . '(s)'); ?></td>
+                <?php if ($option['cycle']) { ?>
+                    <td><?php echo $option['cycle'] . ' cycle(s)'; ?></td>
+                <?php } else { ?>
+                    <td class="masterTooltip" title="Subscription that has no end date">
+                        <?php echo __('Ongoing subscription'); ?>
+                    </td>
+                <?php } ?>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+
+    <br><br>
+
+    <?php if ($useCanDefineStartDate) { ?>
+        <span><strong>Start Date </strong></span><br>
+        <div>
+            <span class="date-icon"></span>
+            <input id="user_define_start_date" placeholder="Select a date..." class="picker" type="text" required
+                   data-mage-init='{"Magenest_Worldpay/js/subscription_calendar":{ "dateSelector": "#user_define_start_date" }}'
+                   name="additional_options[Start Date]"
+            />
+        </div>
+    <?php } else { ?>
+        <span><strong>Start Date </strong></span><br>
+        <input type="text" value="<?php echo $block->getCurrentDate();?>" name="additional_options[Start Date]" readonly />
+    <?php } ?>
+<?php } ?>

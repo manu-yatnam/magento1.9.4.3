@@ -1,0 +1,123 @@
+<?php
+/**
+ * Created by Magenest.
+ * Author: Pham Quang Hau
+ * Date: 26/03/2016
+ * Time: 00:42
+ */
+/**@var \Magenest\Worldpay\Block\Adminhtml\Profile\View\Tabs\Info $block */
+?>
+<?php
+    $profile = $block->getProfile();
+    $product = $block->getProductModel();
+    $customer = $block->getCustomer();
+    $status = $profile->getData('status');
+?>
+<input style="display: none" type="text" value="<?php echo $profile->getId(); ?>" name="profile_id"/>
+
+<section class="admin__page-section order-view-account-information">
+    <div class="admin__page-section-title">
+        <span class="title"><?php echo $block->escapeHtml(__('Profile Information')) ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-information">
+            <div class="admin__page-section-item-title">
+                <span class="title"><?php echo __('Payment Information'); ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <table class="admin__table-secondary order-information-table">
+                    <tr>
+                        <th><?php echo __('Token'); ?></th>
+                        <td><?php echo $profile->getData('token'); ?></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo __('Order ID'); ?></th>
+                        <td><?php echo $profile->getData('order_id') ?></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo __('Subscription Amount'); ?></th>
+                        <td><?php echo number_format($profile->getData('amount'), 2); ?></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo __('Currency'); ?></th>
+                        <td><?php echo $profile->getData('currency'); ?></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo __('Customer Name'); ?></th>
+                        <td><?php echo $customer->getName(); ?></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo __('Customer Email'); ?></th>
+                        <td><?php echo $customer->getEmail(); ?></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo __('Product'); ?></th>
+                        <td><?php echo $product->getName(); ?></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="admin__page-section-item order-account-information">
+            <div class="admin__page-section-item-title">
+                <span class="title"><?php echo __('Recurring Schedule'); ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <table class="admin__table-secondary order-information-table">
+                    <tr>
+                        <th><?php echo __('Status'); ?></th>
+                        <td>
+                            <select id="status-select" name="status_select">
+                                <option value="<?php echo \Magenest\Worldpay\Model\Config::STATUS_ACTIVE; ?>"><?php echo __('Active') ?></option>
+                                <option value="<?php echo \Magenest\Worldpay\Model\Config::STATUS_CANCELLED; ?>"><?php echo __('Cancelled') ?></option>
+                                <option value="<?php echo \Magenest\Worldpay\Model\Config::STATUS_EXPIRED; ?>"><?php echo __('Expired') ?></option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><?php echo __('Start Date'); ?></th>
+                        <td><?php echo $profile->getData('start_date'); ?></td>
+                    </tr>
+
+                    <tr>
+                        <th><?php echo __('Last Billed Date'); ?></th>
+                        <td><?php echo $profile->getData('last_billed'); ?></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo __('Next Billing Date'); ?></th>
+                        <td><?php echo $profile->getData('next_billing'); ?></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+</section>
+
+<div class="admin__page-section-item order-information">
+    <div class="admin__page-section-item-title">
+        <span class="title"><?php echo __('Current Status'); ?></span>
+    </div>
+    <div class="admin__page-section-item-content">
+        <table class="admin__table-secondary order-information-table">
+            <tr>
+                <th><?php echo __('Total Cycles'); ?></th>
+                <td><input type="number"
+                           value="<?php echo $profile->getData('total_cycles'); ?>" name="input_total_cycles"/></td>
+            </tr>
+            <tr>
+                <th><?php echo __('Cycles Remaining'); ?></th>
+                <td><input type="number"
+                           value="<?php echo $profile->getData('remaining_cycles'); ?>" name="input_remaining_cycles"/></td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+<script>
+    require([
+        'jquery'
+    ], function ($) {
+        'use strict';
+
+        $('#status-select').val('<?php echo $status; ?>');
+    });
+</script>

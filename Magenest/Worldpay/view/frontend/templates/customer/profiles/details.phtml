@@ -1,0 +1,103 @@
+<?php
+/**
+ * Created by Magenest.
+ * Author: Pham Quang Hau
+ * Date: 29/03/2016
+ * Time: 02:51
+ */
+/**@var \Magenest\Worldpay\Block\Customer\View $block */
+?>
+<?php $profile = $block->getProfile();
+    $product = $block->getProductModel();
+    $customer = $block->getCustomer();
+    $status = $profile->getData('status'); ?>
+
+<div><a href="<?php echo $block->getCancelUrl() ?>">Cancel Profile</a></div>
+<br><br>
+<div class="block block-order-details-view">
+    <div class="block-title">
+        <strong><?php echo __('Profile Information'); ?></strong>
+    </div>
+    <div class="block-content">
+        <div class="box" style="width: 50%; display: inline; float: left">
+            <strong class="box-title">
+                <span><?php echo __('Payment Information'); ?></span>
+            </strong>
+            <div class="box-content">
+                <table>
+                    <tr>
+                        <th><?php echo __('Token'); ?></th>
+                        <td><?php echo $profile->getData('token'); ?></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo __('Order ID'); ?></th>
+                        <td><?php echo $profile->getData('order_id') ?></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo __('Subscription Amount'); ?></th>
+                        <td><?php echo number_format($profile->getData('amount'), 2); ?></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo __('Currency'); ?></th>
+                        <td><?php echo $profile->getData('currency'); ?></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo __('Product'); ?></th>
+                        <td><?php echo $product->getName(); ?></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="box" style="width: 50%; display: inline; float: left">
+            <strong class="box-title">
+                <span><?php echo __('Recurring Schedule'); ?></span>
+            </strong>
+            <div class="box-content">
+                <table>
+                    <tr>
+                        <th><?php echo __('Status'); ?></th>
+                        <?php if ($status == \Magenest\Worldpay\Model\Config::STATUS_ACTIVE) { ?>
+                            <td><?php echo __('Active') ?></td>
+                        <?php } else if ($status == \Magenest\Worldpay\Model\Config::STATUS_CANCELLED) { ?>
+                            <td><?php echo __('Cancel') ?></td>
+                        <?php } else { ?>
+                            <td><?php echo __('Expired') ?></td>
+                        <?php } ?>
+                    </tr>
+                    <tr>
+                        <th><?php echo __('Start Date'); ?></th>
+                        <td><?php echo $profile->getData('start_date'); ?></td>
+                    </tr>
+
+                    <tr>
+                        <th><?php echo __('Last Billed Date'); ?></th>
+                        <td><?php echo $profile->getData('last_billed'); ?></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo __('Next Billing Date'); ?></th>
+                        <td><?php echo $profile->getData('next_billing'); ?></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="box" style="width: 50%; display: inline; float: left">
+            <strong class="box-title">
+                <span><?php echo __('Current Status'); ?></span>
+            </strong>
+            <div class="box-content">
+                <table>
+                    <tr>
+                        <th><?php echo __('Total Cycles'); ?></th>
+                        <td><?php echo $profile->getData('total_cycles'); ?></td>
+                    </tr>
+                    <tr>
+                        <th><?php echo __('Cycles Remaining'); ?></th>
+                        <td><?php echo $profile->getData('remaining_cycles'); ?></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

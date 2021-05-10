@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magenest\Worldpay\Block\Adminhtml\Profile\View" name="worldpay_profile_view"/>
+        </referenceContainer>
+    </body>
+    <referenceContainer name="left">
+        <block class="Magenest\Worldpay\Block\Adminhtml\Profile\View\Tabs" name="worldpay_profile_tabs">
+            <block class="Magenest\Worldpay\Block\Adminhtml\Profile\View\Tabs\Info" name="worldpay_profile_view_tab_info" template="profile/view/info.phtml"/>
+            <block class="Magenest\Worldpay\Block\Adminhtml\Profile\View\Tabs\RelatedOrder" name="worldpay_profile_view_tab_related_order" />
+
+            <action method="addTab">
+                <argument name="name" xsi:type="string">worldpay_profile_info</argument>
+                <argument name="block" xsi:type="string">worldpay_profile_view_tab_info</argument>
+            </action>
+            <action method="addTab">
+                <argument name="name" xsi:type="string">worldpay_profile_related_order</argument>
+                <argument name="block" xsi:type="string">worldpay_profile_view_tab_related_order</argument>
+            </action>
+        </block>
+    </referenceContainer>
+</page>
